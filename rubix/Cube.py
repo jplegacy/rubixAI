@@ -15,12 +15,6 @@ COLORS = {0: "O", 1: "R",2: "Y",3: "B",4: "G",5: "W"}
 MOVES = ["f","b","r","l","u","d","f'","b'","r'","l'","u'","d'","f''","b''","r''","l''","u''","d''"]
 
 class Cube(InformedProblemState):
-    """_summary_
-
-    Args:
-        InformedProblemState (_type_): _description_
-    """
-
            
     def __init__(self, size=3):
         self.size = size
@@ -60,13 +54,13 @@ class Cube(InformedProblemState):
                 serial+= "".join(row.tolist())
         return serial
 
-    def dictkey(self):
-        return self.serialize()
-
-    def equals(self, otherCube):
-        return self.serialize() == otherCube.serialize()
 
     def cw(self, face):
+        """Applies 90 degree clockwise rotation on specified face
+
+        Args:
+            face (string): face name for rotation 
+        """
         side = self.faces[face]
         self.faces[face] = np.rot90(side, 3)
         connected = self.connectedEdges(face)
@@ -78,6 +72,11 @@ class Cube(InformedProblemState):
         self.transferRow(temp, connected[1])
 
     def cc(self,face):
+        """Applies 90 degree counter-clockwise rotation on specified face
+
+        Args:
+            face (string): face name for rotation 
+        """        
         side = self.faces[face]
         self.faces[face] = np.rot90(side, 1)
         connected = self.connectedEdges(face)
@@ -89,18 +88,14 @@ class Cube(InformedProblemState):
         self.transferRow(temp, connected[2])
         
     def turn_180(self, face):
+        """Applies 180 degree rotation on specified face
+
+        Args:
+            face (string): face name for rotation 
+        """
         self.cc(face)
         self.cc(face)
-
-    def applyOperators(self):
-        operations = []
-
-        for move in self.MOVES:
-            operations.append(self.produceNextTurn(move))
-
-        return operations
-
-
+    
     def transferRow(self, src, to):
         for i, src in enumerate(src):
             to[i] = src
@@ -203,16 +198,59 @@ class Cube(InformedProblemState):
         else: 
             self.turn_180(move[0])
 
+    #----------------------------------------------------------------
+    # REQUIRED METHODS TO IMPLEMENT InformedProblemState
+    #----------------------------------------------------------------
+
+
+    def applyOperators(self):
+        """Produces a list of all possible cubes that can be produced from this given cube.
+
+        Returns:
+            Cube[]: list of cubes that can be produced using 1 move from MOVES constant
+        """        
+        operations = []
+
+        for move in self.MOVES:
+            operations.append(self.produceNextTurn(move))
+
+        return operations
+
+
+    def dictkey(self):
+        """Produces a unique identifier for this given state
+        """
+
+        #TODO: Can be improved to encapcilate permuation and other symmetries
+        return self.serialize()
+
+    def equals(self, otherCube):
+        """Compares two cube's and returns whether or not both cube's are the same
+        """        
+
+        #TODO: Can be improved to pick up on symmetric permuations of a rubix cube
+        return self.serialize() == otherCube.serialize()
+
     def heuristic(self, goal):
+        """Heuristic Function that calculates how 
+
+        Args:
+            goal(Cube): state that this heuristic is being calculated on
+
+        Returns:
+            int: the number of collective extra colors on each side of the cube
+        """        
+        
         h = 0
         for  _, face in self.faces.items():
-            numOfColors = len(np.unique(face))-1 # Each Side is supposed to have 1 color
+            numOfColors = len(np.unique(face))-1
             if numOfColors== 4:
                 h += 4
             elif numOfColors == 3:
                 h += 2
             elif numOfColors == 2:
                 h += 1
+            # Each Side is supposed to have 1 color so technically h+=0 proceeds
 
         return h
 
