@@ -1,4 +1,14 @@
-from Structures import *
+from searchStructures import *
+from Rubix import *
+
+
+class InformedProblemState(ProblemState):
+    """
+    An extended interface class for problem domains
+    with an informed abstract approach.  
+    """
+    def heuristic(self, goal):
+        abstract()
 
 class InformedNode(Node):
     def __init__(self, state, parent, depth, goalState):
@@ -41,7 +51,16 @@ class InformedSearch(Search):
                 if self.verbose:
                     print( "Expanded:", current)
                     print( "Number of successors:", len(successors))
-                    # print("Queue length:", self.q.size())
                     print( "-------------------------------")
 
 
+
+
+
+if __name__ == '__main__':
+    normal = Rubix(3)
+    extra = Rubix(3)
+
+    extra.scramble(5)    
+    # extra.applySequence("D U'' B'' D'' R' D'' B'' L'' B'' R'' D'' U' B D' F'' U'' L'' D L R'' D' L F' U F R'' B L R' F'")
+    InformedSearch(extra, normal, False)

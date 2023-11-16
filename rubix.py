@@ -1,6 +1,8 @@
 import random
 import numpy as np
 
+from Astar import InformedProblemState
+
 """
 Rubix implementation
 """
@@ -10,7 +12,7 @@ Rubix implementation
 
 COLORS = {0: "O", 1: "R",2: "Y",3: "B",4: "G",5: "W"}
 
-class Rubix:
+class Rubix(InformedProblemState):
     """Implementation of nxn rubix - currently only has moves to solve 3x3 cubes 
     """    
     MOVES = ["f","b","r","l","u","d","f'","b'","r'","l'","u'","d'","f''","b''","r''","l''","u''","d''"]
@@ -18,12 +20,12 @@ class Rubix:
     def __init__(self, size=3):
         self.size = size
         self.faces = {
-            "f": np.full((size,size),0,dtype=int),
-            "b" : np.full((size,size),1,dtype=int),
-            "r": np.full((size,size),2,dtype=int),
-            "l" : np.full((size,size),3,dtype=int),
-            "u"   : np.full((size,size),4,dtype=int),
-            "d" : np.full((size,size),5,dtype=int)
+            "f": np.full((size,size),0,dtype=str),
+            "b" : np.full((size,size),1,dtype=str),
+            "r": np.full((size,size),2,dtype=str),
+            "l" : np.full((size,size),3,dtype=str),
+            "u"   : np.full((size,size),4,dtype=str),
+            "d" : np.full((size,size),5,dtype=str)
         }
 
     def copy(self):
@@ -50,8 +52,11 @@ class Rubix:
         serial = ""
         for  _, face in self.faces.items():
             for row in face:
-                serial+= "".join(row)
+                serial+= "".join(row.tolist())
         return serial
+
+    def dictkey(self):
+        return self.serialize()
 
     def equals(self, otherCube):
         return self.serialize() == otherCube.serialize()
@@ -86,17 +91,7 @@ class Rubix:
         operations = []
 
         for move in self.MOVES:
-            cloned = self.copy()
-            
-                        
-        # if self.emptyLocation[1] < len(self.board[0])-1:
-        #     operations.append(self.moveRight())
-        # if self.emptyLocation[1] > 0:
-        #     operations.append(self.moveLeft())
-        # if self.emptyLocation[0] > 0:
-        #     operations.append(self.moveUp())
-        # if self.emptyLocation[0] < len(self.board)-1:
-        #     operations.append(self.moveDown())
+            operations.append(self.produceNextTurn(move))
 
         return operations
 
@@ -148,16 +143,18 @@ class Rubix:
         return (left, up, right, bottom)
 
 
-    def produceNextTurn(self, move):
+    def produceNextTurn(self, action):
         clone = self.copy()
 
-        match move:
-            case "f":
-                
-
+        if len(action) == 1:
+            clone.cw(action)
+        elif len(action) == 2:
+            clone.cc(action[0])
+        else: 
+            clone.turn_180(action[0])
         
-        return self.MOVES
-    
+        return clone
+                    
     def possibleTurns(self):
         """Returns a list of all the supported moves
         """
@@ -187,11 +184,24 @@ class Rubix:
                 self.cc(action[0])
             else: 
                 self.turn_180(action[0])
+                
+    def applySequence(self, seq):
+        moves = seq.split()
+        for move in moves:
+            move = move.lower()
+            if len(move) == 1:
+                self.cw(move)
+            elif len(move) == 2:
+                self.cc(move[0])
+            else: 
+                self.turn_180(move[0])
+        
+        
 
-    def differentColorHeuristic(self):
+    def heuristic(self, goal):
         h = 0
         for  _, face in self.faces.items():
-            numOfColors = len(np.unique(face)) - 1 # Each Side is supposed to have 1 color
+            numOfColors = len(np.unique(face))-1 # Each Side is supposed to have 1 color
             if numOfColors== 4:
                 h += 4
             elif numOfColors == 3:
@@ -200,7 +210,18 @@ class Rubix:
                 h += 1
 
         return h
-        
+
+    # def heuristic(self, goal):
+    #     sum = 0
+    #     face_count = 0
+    #     for face in goal.faces:
+    #         for block in face:
+    #             if block != str(face_count):
+    #                 sum += 1
+    #         face_count += 1
+    #     return sum
+
+    
 
 if __name__ == "__main__":
     r = Rubix(3)

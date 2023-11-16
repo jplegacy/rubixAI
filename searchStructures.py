@@ -174,3 +174,26 @@ class Search:
             result.insert(0, node)
             node = node.parent
         return result
+
+
+class ProblemState:
+    """
+    An interface class for problem domains.  
+    """
+    def applyOperators(self):
+        """
+        Returns a list of legal successors to the current state.
+        """
+        abstract()
+    def equals(self, state):
+        """
+        Tests whether the state instance equals the given state.
+        """
+        abstract()
+    def dictkey(self):
+        """
+        Returns a string that can be used as a dictionary key to
+        represent the unique state.
+        """
+        abstract()
+    
