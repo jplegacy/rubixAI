@@ -143,7 +143,16 @@ class Cube(InformedProblemState):
         return (left, up, right, bottom)
 
 
-    def produceNextTurn(self, action):
+    def produceNextTurn(self, move
+                        ):
+        """Given a move produces a cloned Cube with the new move applied
+
+        Args:
+            move (String): Move getting applied to new cube
+
+        Returns:
+            Cube: New Cube
+        """        
         clone = self.copy()
 
         if len(action) == 1:
@@ -185,8 +194,15 @@ class Cube(InformedProblemState):
             
                 
     def applySequence(self, seq):
+        """Applies a sequence of moves on this cube
+
+        Args:
+            seq (String): Sequence of whitespace seperated valid moves 
+        """        
         moves = seq.split()
         for move in moves:
+            assert move in self.MOVES
+            
             move = move.lower()
             self.applyMove(move)
 
