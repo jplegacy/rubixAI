@@ -4,15 +4,14 @@ import numpy as np
 from Astar import InformedProblemState
 
 """
-Rubix implementation
-"""
+Rubix Cube implementation
 
-"""Partial implementations from https://github.com/soqt/Rubix-cube-Q-learning/blob/master/Cube.py#L78
+Similar implementation from https://github.com/soqt/Rubix-cube-Q-learning/blob/master/Cube.py#L78
 """
 
 COLORS = {0: "O", 1: "R",2: "Y",3: "B",4: "G",5: "W"}
 
-class Rubix(InformedProblemState):
+class Cube(InformedProblemState):
     """Implementation of nxn rubix - currently only has moves to solve 3x3 cubes 
     """    
     MOVES = ["f","b","r","l","u","d","f'","b'","r'","l'","u'","d'","f''","b''","r''","l''","u''","d''"]
@@ -29,7 +28,7 @@ class Rubix(InformedProblemState):
         }
 
     def copy(self):
-        new = Rubix(self.size)
+        new = Cube(self.size)
         clonedFaces = {}
         for k,v in self.faces.items():
             clonedFaces[k] = np.copy(v)
@@ -56,7 +55,7 @@ class Rubix(InformedProblemState):
         return serial
 
     def dictkey(self):
-        return self.serialize()
+        return self.__str__()
 
     def equals(self, otherCube):
         return self.serialize() == otherCube.serialize()
@@ -177,26 +176,22 @@ class Rubix(InformedProblemState):
             x (int): the number of random moves to be applied to the cube
         """    
         for i in range(x):
-            action = random.choice(self.possibleTurns())
-            if len(action) == 1:
-                self.cw(action)
-            elif len(action) == 2:
-                self.cc(action[0])
-            else: 
-                self.turn_180(action[0])
+            move = random.choice(self.possibleTurns())
+            self.applyMove(move)
                 
     def applySequence(self, seq):
         moves = seq.split()
         for move in moves:
             move = move.lower()
-            if len(move) == 1:
+            self.applyMove(move)
+
+    def applyMove(self, move):
+        if len(move) == 1:
                 self.cw(move)
-            elif len(move) == 2:
-                self.cc(move[0])
-            else: 
-                self.turn_180(move[0])
-        
-        
+        elif len(move) == 2:
+            self.cc(move[0])
+        else: 
+            self.turn_180(move[0])
 
     def heuristic(self, goal):
         h = 0
@@ -211,6 +206,14 @@ class Rubix(InformedProblemState):
 
         return h
 
+    # def heuristic(self,goal):
+    #     h = 0
+    #     for  f, face in self.faces.items():
+    #         h += np.sum(face != goal.faces[f])
+
+    #     return h
+        
+
     # def heuristic(self, goal):
     #     sum = 0
     #     face_count = 0
@@ -224,7 +227,7 @@ class Rubix(InformedProblemState):
     
 
 if __name__ == "__main__":
-    r = Rubix(3)
+    r = Cube(3)
     r.turn_180("f")
     print(r)
     print("Solved?:", r.isSolved())

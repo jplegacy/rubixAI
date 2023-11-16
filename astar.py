@@ -1,5 +1,5 @@
 from searchStructures import *
-from Rubix import *
+import rubix.Cube as Cube
 
 
 class InformedProblemState(ProblemState):
@@ -20,13 +20,14 @@ class InformedNode(Node):
 
 
 class InformedSearch(Search):
-    def __init__(self, initialState, goalState, verbose=False):
+    def __init__(self, initialState, goalState, maxIterations, verbose=False):
         self.uniqueStates = {}
         self.uniqueStates[initialState.dictkey()] = True
         self.q = PriorityQueue()
         self.q.enqueue(InformedNode(initialState, None, 0, goalState))
         self.goalState = goalState
         self.verbose = verbose
+        self.maxIterations = maxIterations
         self.nodeChecked = 0
 
         solution = self.execute()
@@ -41,6 +42,8 @@ class InformedSearch(Search):
             self.nodeChecked += 1
             if self.goalState.equals(current.state):
                 return current
+            if self.nodeChecked == self.maxIterations:
+                return None
             else:
                 successors = current.state.applyOperators()
                 for nextState in successors:
@@ -58,9 +61,9 @@ class InformedSearch(Search):
 
 
 if __name__ == '__main__':
-    normal = Rubix(3)
-    extra = Rubix(3)
+    normal = Cube.Cube(2)
+    extra = Cube.Cube(2)
 
-    extra.scramble(5)    
+    extra.scramble(10)    
     # extra.applySequence("D U'' B'' D'' R' D'' B'' L'' B'' R'' D'' U' B D' F'' U'' L'' D L R'' D' L F' U F R'' B L R' F'")
-    InformedSearch(extra, normal, False)
+    InformedSearch(extra, normal, 3000, False)
