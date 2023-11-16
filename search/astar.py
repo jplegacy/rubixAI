@@ -1,6 +1,5 @@
-from searchStructures import *
-import rubix.Cube as Cube
-
+from .searchStructures import *
+from tqdm import tqdm
 
 class InformedProblemState(ProblemState):
     """
@@ -30,12 +29,13 @@ class InformedSearch(Search):
         self.maxIterations = maxIterations
         self.nodeChecked = 0
 
-        solution = self.execute()
-        if solution == None:
-            print("Search failed")
+        self.solution = self.execute()
+
+    def results(self):
+        if self.solution == None:
+            return self.maxIterations, "Failed"
         else:
-            # self.showPath(solution)
-            print("Number of Expanded Nodes :", self.nodeChecked)
+            return self.nodeChecked, self.stringPath(self.solution)
     def execute(self):
         while not self.q.empty():
             current = self.q.dequeue()
@@ -56,14 +56,3 @@ class InformedSearch(Search):
                     print( "Number of successors:", len(successors))
                     print( "-------------------------------")
 
-
-
-
-
-if __name__ == '__main__':
-    normal = Cube.Cube(2)
-    extra = Cube.Cube(2)
-
-    extra.scramble(10)    
-    # extra.applySequence("D U'' B'' D'' R' D'' B'' L'' B'' R'' D'' U' B D' F'' U'' L'' D L R'' D' L F' U F R'' B L R' F'")
-    InformedSearch(extra, normal, 3000, False)

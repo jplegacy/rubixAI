@@ -161,8 +161,16 @@ class Search:
     def showPath(self, node):
         path = self.buildPath(node)        
         for current in path:
-            print( current.state)
+            print(current.state)
         print("Goal reached in", current.depth, "steps")
+
+    def stringPath(self,node):
+        path = self.buildPath(node)
+        output = ""        
+        for current in path:
+            output += current.state.__str__()
+        return output
+            
     def buildPath(self, node):
         """
         Beginning at the goal node, follow the parent links back

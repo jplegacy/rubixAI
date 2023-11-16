@@ -1,21 +1,20 @@
-import random
-import numpy as np
-
-from Astar import InformedProblemState
-
 """
 Rubix Cube implementation
+
+Implementation of nxn rubix - currently only has moves to solve 3x3 cubes 
 
 Similar implementation from https://github.com/soqt/Rubix-cube-Q-learning/blob/master/Cube.py#L78
 """
 
-COLORS = {0: "O", 1: "R",2: "Y",3: "B",4: "G",5: "W"}
+import random
+import numpy as np
 
-class Cube(InformedProblemState):
-    """Implementation of nxn rubix - currently only has moves to solve 3x3 cubes 
-    """    
-    MOVES = ["f","b","r","l","u","d","f'","b'","r'","l'","u'","d'","f''","b''","r''","l''","u''","d''"]
-    
+from search.astar import InformedProblemState
+
+COLORS = {0: "O", 1: "R",2: "Y",3: "B",4: "G",5: "W"}
+MOVES = ["f","b","r","l","u","d","f'","b'","r'","l'","u'","d'","f''","b''","r''","l''","u''","d''"]
+
+class Cube(InformedProblemState):       
     def __init__(self, size=3):
         self.size = size
         self.faces = {
@@ -55,7 +54,7 @@ class Cube(InformedProblemState):
         return serial
 
     def dictkey(self):
-        return self.__str__()
+        return self.serialize()
 
     def equals(self, otherCube):
         return self.serialize() == otherCube.serialize()
@@ -174,10 +173,14 @@ class Cube(InformedProblemState):
 
         Args:
             x (int): the number of random moves to be applied to the cube
-        """    
+        """ 
+        sequence = ""   
         for i in range(x):
             move = random.choice(self.possibleTurns())
+            sequence += move + " "
             self.applyMove(move)
+        return sequence
+            
                 
     def applySequence(self, seq):
         moves = seq.split()
@@ -205,26 +208,6 @@ class Cube(InformedProblemState):
                 h += 1
 
         return h
-
-    # def heuristic(self,goal):
-    #     h = 0
-    #     for  f, face in self.faces.items():
-    #         h += np.sum(face != goal.faces[f])
-
-    #     return h
-        
-
-    # def heuristic(self, goal):
-    #     sum = 0
-    #     face_count = 0
-    #     for face in goal.faces:
-    #         for block in face:
-    #             if block != str(face_count):
-    #                 sum += 1
-    #         face_count += 1
-    #     return sum
-
-    
 
 if __name__ == "__main__":
     r = Cube(3)
