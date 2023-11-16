@@ -1,7 +1,10 @@
 """
+Author: Jeremy Perez
+Date: November 2023
+
 Rubix Cube implementation
 
-Implementation of nxn rubix - currently only has moves to solve 3x3 cubes 
+Currently only has moves to solve 3x3 cubes but structurally supports nxn cubes
 
 Similar implementation from https://github.com/soqt/Rubix-cube-Q-learning/blob/master/Cube.py#L78
 """
@@ -28,6 +31,11 @@ class Cube(InformedProblemState):
         }
 
     def copy(self):
+        """Deep copies this cube 
+
+        Returns:
+            Cube: cloned copy of this cube
+        """        
         new = Cube(self.size)
         clonedFaces = {}
         for k,v in self.faces.items():
@@ -37,6 +45,23 @@ class Cube(InformedProblemState):
         return new                 
     
     def __str__(self):
+        """2D String representation of this cube using the following shape
+
+          |u|
+        |l|f|r|b|
+          |d|
+
+        where u:up, f:front, l:left, d:down, r:right, b:back
+
+        Returns:
+            String: 2D plot of all the faces of the cube
+
+        2x2 Cube Example:
+            3 3 
+        0 0 1 1 2 2 4 4
+        0 0 1 1 2 2 4 4
+            5 5 
+        """        
         output = ""
         blockSize = len(str(self.faces["f"][0]))
         for i in range(self.size):
@@ -48,6 +73,20 @@ class Cube(InformedProblemState):
         return output
 
     def serialize(self):
+        """Reads out Cube in one line, where the index of string corresponds to it's reading using the following scheme
+
+        2x2 Cube Example:
+              0  1
+              2  3  
+        4  5  6  7  8  9  10 11
+        12 13 14 15 16 17 18 19
+              20 30
+              31 32  
+              
+
+        Returns:
+            String: Every Piece in sequence 
+        """        
         serial = ""
         for  _, face in self.faces.items():
             for row in face:
@@ -97,10 +136,24 @@ class Cube(InformedProblemState):
         self.cc(face)
     
     def transferRow(self, src, to):
+        """Swaps values in the cube from a specified location 
+
+        Args:
+            src (np.array): original value locations
+            to (np.array): new values replacing old
+        """        
         for i, src in enumerate(src):
             to[i] = src
 
     def connectedEdges(self, side):
+        """Finds edges correponding(touching) a specified side 
+
+        Args:
+            side (string): Name of the side in question
+
+        Returns:
+            tuple: 4 tuple of all the rows using the following structure (left, up, right, bottom)
+        """        
         match side:
             # with respect to the current side, finds the neighboring pieces
             case 'f':
