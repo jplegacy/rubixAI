@@ -14,7 +14,14 @@ from search.astar import InformedProblemState
 COLORS = {0: "O", 1: "R",2: "Y",3: "B",4: "G",5: "W"}
 MOVES = ["f","b","r","l","u","d","f'","b'","r'","l'","u'","d'","f''","b''","r''","l''","u''","d''"]
 
-class Cube(InformedProblemState):       
+class Cube(InformedProblemState):
+    """_summary_
+
+    Args:
+        InformedProblemState (_type_): _description_
+    """
+
+           
     def __init__(self, size=3):
         self.size = size
         self.faces = {
