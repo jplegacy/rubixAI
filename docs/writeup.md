@@ -74,4 +74,4 @@ If there exist a point around 2000 it's likely denoting that the algorithm requi
 
 ### Citations and Sources
 
-Rubix 3x3 Cube implementation was partially adapted from https://github.com/soqt/Rubix-cube-Q-learning/blob/master/Cube.py#L78 
+Rubix 3x3 Cube implementation was partially adapted from https://github.com/soqt/Rubix-cube-Q-learning/blob/master/Cube.py
