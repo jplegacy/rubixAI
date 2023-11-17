@@ -2,7 +2,7 @@
 Author: Jeremy Perez
 Date: November 2023
 
-Rubix Cube implementation
+Rubix Cube nxn implementation using dictionaries and arrays.
 
 Currently only has moves to solve 3x3 cubes but structurally supports nxn cubes
 
@@ -196,8 +196,7 @@ class Cube(InformedProblemState):
         return (left, up, right, bottom)
 
 
-    def produceNextTurn(self, move
-                        ):
+    def produceNextTurn(self, move):
         """Given a move produces a cloned Cube with the new move applied
 
         Args:
