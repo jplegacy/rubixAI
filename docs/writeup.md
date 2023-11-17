@@ -6,12 +6,12 @@ FILL IN
 
 
 ### Implementation and Design Choices of Rubix Cube
-It turned out that implementing a Rubix Cube is a bit more challenging then it seems. From my proposal I assumed coming up with a heuristic function was going to be the hardest task of this project but arguably, it's on par with the implementation of the cube. The main questions behind the rubix's design choice was: 
+It turned out that implementing a Rubix Cube is a bit more challenging than it seems. From my proposal, I assumed coming up with a heuristic function was going to be the hardest task of this project but arguably, it's on par with the implementation of the cube. The main questions behind the Rubix's design choice were: 
 
-- What's the easiest and most efficent structure for turning a side?
+- What's the easiest and most efficient structure for turning a side?
 - How will movements be made?
 
-In retrospect, implementating a graph to represent a cube could've been better to move around the data but settling on a dictionary of list storing each side with respect to a direction from a singular face was a pretty good choice. The benefits of this are that 
+In retrospect, implementing a graph to represent a cube could've been better to move around the data but settling on a dictionary of lists storing each side with respect to a direction from a singular face was a pretty good choice. The benefits of this are that 
 
 
 ### Heuristic Functions
