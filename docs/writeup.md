@@ -11,7 +11,7 @@ It turned out that implementing a Rubix Cube is a bit more challenging than it s
 - What's the easiest and most efficient structure for turning a side?
 - How will movements be made?
 
-In retrospect, implementing a graph to represent a cube could've been better to move around the data but settling on a dictionary of lists storing each side with respect to a direction from a singular face was a pretty good choice. The benefits of this are that 
+In retrospect, implementing a graph to represent a cube could've been better made it easier to move around data but settling on a dictionary of lists storing each side with respect to a direction from a singular face was a pretty good choice of implementation. Central pieces do not move around because of this implementation meaning that there's only one orientation this code is technically viewing a cube at a given time.
 
 
 ### Heuristic Functions
@@ -34,7 +34,6 @@ In retrospect, implementing a graph to represent a cube could've been better to 
 
 #### Heurisitc 2: Total of Pieces out of place
 --Designchoice goes here---
-
 
     def heuristic(self, goal):
         h = 0
@@ -60,7 +59,7 @@ In retrospect, implementing a graph to represent a cube could've been better to 
 
 ### Analysis and Success of Heuristic Function
 
-FILL IN
+![2x2CubeData](figures/AStar2x2heur1XTRA.png)
 
 
 ### Citations and Sources

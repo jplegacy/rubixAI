@@ -154,44 +154,43 @@ class Cube(InformedProblemState):
         Returns:
             tuple: 4 tuple of all the rows using the following structure (left, up, right, bottom)
         """        
-        match side:
-            # with respect to the current side, finds the neighboring pieces
-            case 'f':
-                left = self.faces['l'][:, self.size - 1] # uses np slicing to get last element from each row
-                right = self.faces['r'][:, 0]
-                up = self.faces['u'][self.size-1]
-                bottom = self.faces['d'][0]
-            
-            case 'l':
-                left = self.faces['b'][:, self.size - 1]
-                up = self.faces['u'][:, 0]
-                bottom = self.faces['d'][:, 0]
-                right = self.faces['f'][:, 0]
-            case 'b':
-                left = self.faces['r'][:, self.size - 1]
-                up = self.faces['u'][0]
-                bottom = self.faces['d'][self.size -1]
-                right = self.faces['l'][:, 0]
-            case 'r':
-                left = self.faces['f'][:, self.size - 1]
-                up = self.faces['u'][:, self.size - 1]
-                bottom = self.faces['d'][:, self.size-1]
-                right = self.faces['b'][:, 0]
-            case 'u':
-                left = self.faces['l'][0]
-                up = self.faces['b'][0]
-                bottom = self.faces['f'][0]
-                right = self.faces['r'][0]
-            case 'd':
-                left = self.faces['l'][self.size - 1]
-                up = self.faces['f'][self.size - 1]
-                bottom = self.faces['b'][self.size - 1]
-                right = self.faces['r'][self.size - 1]
-            case _:
-                left = []
-                right = []
-                up = []
-                bottom = []
+        # with respect to the current side, finds the neighboring pieces
+        if side == 'f':
+            left = self.faces['l'][:, self.size - 1] # uses np slicing to get last element from each row
+            right = self.faces['r'][:, 0]
+            up = self.faces['u'][self.size-1]
+            bottom = self.faces['d'][0]
+        
+        elif side == 'l':
+            left = self.faces['b'][:, self.size - 1]
+            up = self.faces['u'][:, 0]
+            bottom = self.faces['d'][:, 0]
+            right = self.faces['f'][:, 0]
+        elif side == 'b':
+            left = self.faces['r'][:, self.size - 1]
+            up = self.faces['u'][0]
+            bottom = self.faces['d'][self.size -1]
+            right = self.faces['l'][:, 0]
+        elif side == 'r':
+            left = self.faces['f'][:, self.size - 1]
+            up = self.faces['u'][:, self.size - 1]
+            bottom = self.faces['d'][:, self.size-1]
+            right = self.faces['b'][:, 0]
+        elif side == 'u':
+            left = self.faces['l'][0]
+            up = self.faces['b'][0]
+            bottom = self.faces['f'][0]
+            right = self.faces['r'][0]
+        elif side == 'd':
+            left = self.faces['l'][self.size - 1]
+            up = self.faces['f'][self.size - 1]
+            bottom = self.faces['b'][self.size - 1]
+            right = self.faces['r'][self.size - 1]
+        else:
+            left = []
+            right = []
+            up = []
+            bottom = []
 
         return (left, up, right, bottom)
 
