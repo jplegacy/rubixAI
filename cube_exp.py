@@ -12,7 +12,6 @@ from multiprocessing import Pool
 
 RUNS_PER_LENGTH = 20
 
-
 RUBIX_CUBE_SIZE = 2
 MAX_CUBE_STATES = 1000
 VERBOSE_OUTPUT = False
@@ -30,7 +29,7 @@ ySequences = []
 for i in tqdm(range(RANDOM_SCRAMBLE_LENGTH)):
     random.seed(i)
     
-    for x in tqdm(range(RUNS_PER_LENGTH)):
+    for x in range(RUNS_PER_LENGTH):
         xpoints.append(i)
 
         s = Cube(RUBIX_CUBE_SIZE)
@@ -50,7 +49,6 @@ plt.ylabel('Number of Rubix States Traversed')
 plt.suptitle(f'A* performance on {RUBIX_CUBE_SIZE}x{RUBIX_CUBE_SIZE} Cubes')
 
 plt.show()
-
 
 
 if EXPORT_FILE:

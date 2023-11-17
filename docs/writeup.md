@@ -61,3 +61,8 @@ In retrospect, implementating a graph to represent a cube could've been better t
 ### Analysis and Success of Heuristic Function
 
 FILL IN
+
+
+### Citations and Sources
+
+Rubix Cube implementation was partially adapted from https://github.com/soqt/Rubix-cube-Q-learning/blob/master/Cube.py#L78
