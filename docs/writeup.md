@@ -16,6 +16,8 @@ In retrospect, implementing a graph to represent a cube could've been better and
 
 ### Heuristic Functions
 
+With heurisitic functions being the key to a successful project, naturally many careful steps should be taken to ensure one is crafted. The following are some of the heuristics tried in this project but does not include all of them.
+
 #### Heuristic 1: Number of Colors per side (Best Found)
 --Designchoice goes here---
 
