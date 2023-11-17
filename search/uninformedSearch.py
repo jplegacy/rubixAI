@@ -19,28 +19,22 @@ class ProblemState:
         """
         abstract()
         
-class ProblemState:
+class Node:
     """
-    An interface class for problem domains.  
+    A Node class to be used in combination with state space search.  A
+    node contains a state, a parent node, and the depth of the node in
+    the search tree.  The root node should be at depth 0.
     """
-    def applyOperators(self):
-        """
-        Returns a list of legal successors to the current state.
-        """
-        abstract()
-    def equals(self, state):
-        """
-        Tests whether the state instance equals the given state.
-        """
-        abstract()
-    def dictkey(self):
-        """
-        Returns a string that can be used as a dictionary key to
-        represent the unique state.
-        """
-        abstract()
-    
-
+    def __init__(self, state, parent, depth):
+        self.state = state
+        self.parent = parent
+        self.depth = depth
+    def __str__(self):
+        result = "\nState: " +  str(self.state)
+        result += "\nDepth: " + str(self.depth)
+        if self.parent != None:
+            result += "\nParent: " + str(self.parent.state)
+        return result
 class Search:
     """
     A general Search class that can be used for any problem domain.

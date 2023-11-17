@@ -20,6 +20,7 @@ RANDOM_SCRAMBLE_LENGTH = 20
 
 EXPORT_FILE = True
 
+
 """---------------------------------"""
 
 xpoints = []
@@ -42,6 +43,8 @@ for i in tqdm(range(RANDOM_SCRAMBLE_LENGTH)):
         
         ypoints.append(numOfNodes)
         ySequences.append(sequence)
+
+plt.style.use('dark_background')
 
 plt.scatter(xpoints, ypoints,color = 'hotpink')
 plt.xlabel('Scramble Length')
