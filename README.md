@@ -34,8 +34,11 @@ This module is responsible for storing all Searching methods that will explore t
 ##### astar.py
 This file contains the implementation of A* which relies on the heuristic function within the Rubix classes.
 
-##### searchStructures.py
-This file contains essential classes used throughout the searching algorithms like nodes, queues, and classes like the priorityQueue.
+##### uninformedSearch.py
+This file contains the implementation of BFS which unlike A* does not rely on heuristic functions.
+
+##### queues.py
+This file contains essential queues and priorityQueue classes used throughout searching algorithms
 
 ### 5. Program Configuration
 Configuration parameters can be found within cube_exp.py

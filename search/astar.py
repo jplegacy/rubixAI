@@ -1,4 +1,5 @@
-from .searchStructures import *
+from .uninformedSearch import *
+from .queues import *
 from tqdm import tqdm
 
 class InformedProblemState(ProblemState):
