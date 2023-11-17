@@ -52,7 +52,7 @@ plt.show()
 
 
 if EXPORT_FILE:
-    with open(f'experiement/RubixCube{RUBIX_CUBE_SIZE}x{RUBIX_CUBE_SIZE}-{RANDOM_SCRAMBLE_LENGTH}-{RUNS_PER_LENGTH}.csv', 'w', newline='') as file:
+    with open(f'experimentData/RubixCube{RUBIX_CUBE_SIZE}x{RUBIX_CUBE_SIZE}-{RANDOM_SCRAMBLE_LENGTH}-{RUNS_PER_LENGTH}.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["Scramble Length/Seed", "States Checked", "Sequence"])
 
