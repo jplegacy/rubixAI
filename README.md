@@ -2,12 +2,12 @@
 ## Traversing Rubix Cube State Spaces with Informed Search Algorithms 
 
 ### 1. Background and Goals
-The project's goal is to analyze Search Algorithms when applied to the state spaces of Cubes. We are interested in investigating the relationship between the strategies and heuristics correlated to solving a Rubix cube successfully. The task of solving Rubix cubes is evidently a challenging one when considering the state space has a branching factor of about 18 moves per state in a 3 by 3, giving it a total of approximately 4.3 × 10^19 possible states and configurations.
+The project's goal is to apply search algorithms to the state spaces of Rubix cubes. We are interested in investigating the relationship between successful heuristics correlated to solving a Rubix cube efficiently and effectively. Considering the state space has a branching factor of about 18 moves per state in a 3 by 3, giving it a total of approximately 4.3 × 10^19 possible states and configurations, the task of solving Rubix cubes is evidently a challenging one.
 
 ### 2. How to Install and Run
 
     pip install -r requirements.txt 
-    python3 experiment.py
+    python3 cube_exp.py
 
 #### Understanding Output
 fix me
