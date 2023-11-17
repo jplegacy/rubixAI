@@ -61,9 +61,17 @@ With heurisitic functions being the key to a successful project, naturally many 
 
 ### Analysis and Success of Heuristic Function
 
+In the below figures, we conducted a series of experiments.
+
+The parameters ran 20 runs of a sequences ranging of length 1 to 20. Leading to approximately 400 data points being plotted.
+
+
+-- Talk about 2x2 shapes and interesting things found, also mention the state space of a 2x2.
+
 ![2x2CubeData](figures/AStar3x3heur1XTRA.png)
+If there exist a point around 2000 it's likely denoting that the algorithm required more than 2000 turns to take which is the maxIterations set for runnign the experiment.
 
 
 ### Citations and Sources
 
-Rubix Cube implementation was partially adapted from https://github.com/soqt/Rubix-cube-Q-learning/blob/master/Cube.py#L78
+Rubix 3x3 Cube implementation was partially adapted from https://github.com/soqt/Rubix-cube-Q-learning/blob/master/Cube.py#L78 
