@@ -14,11 +14,11 @@ import numpy as np
 
 from search.astar import InformedProblemState
 
-COLORS = {0: "O", 1: "R",2: "Y",3: "B",4: "G",5: "W"}
-MOVES = ["f","b","r","l","u","d","f'","b'","r'","l'","u'","d'","f''","b''","r''","l''","u''","d''"]
 
 class Cube(InformedProblemState):
-           
+    COLORS = {0: "O", 1: "R",2: "Y",3: "B",4: "G",5: "W"}
+    MOVES = ["f","b","r","l","u","d","f'","b'","r'","l'","u'","d'","f''","b''","r''","l''","u''","d''"]
+
     def __init__(self, size=3):
         self.size = size
         self.faces = {
@@ -206,12 +206,12 @@ class Cube(InformedProblemState):
         """        
         clone = self.copy()
 
-        if len(action) == 1:
-            clone.cw(action)
-        elif len(action) == 2:
-            clone.cc(action[0])
+        if len(move) == 1:
+            clone.cw(move)
+        elif len(move) == 2:
+            clone.cc(move[0])
         else: 
-            clone.turn_180(action[0])
+            clone.turn_180(move[0])
         
         return clone
                     
