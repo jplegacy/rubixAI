@@ -15,7 +15,7 @@ The project's goal is to apply search algorithms to the state spaces of Rubix cu
 The program by default produces a CSV file storing all of the data and seeds correlated to each run within the experimentData directory
 
 The file produced by this program is named according to the format below:
-RubixCube{***RUBIX_CUBE_SIZE***}x{**RUBIX_CUBE_SIZE**}-{**RANDOM_SCRAMBLE_LENGTH**}-{***RUNS_PER_LENGTH***}.csv
+RubixCube{***RUBIX_CUBE_SIZE***}x{***RUBIX_CUBE_SIZE***}-{***RANDOM_SCRAMBLE_LENGTH***}-{***RUNS_PER_LENGTH***}.csv
 
 ### 4. File Structure Overview
 
