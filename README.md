@@ -2,7 +2,7 @@
 ## Traversing Rubix Cube State Spaces with Informed Search Algorithms 
 
 ### 1. Background and Goals
-The project's goal is to analyze Search Algorithms when applied on the state spaces of Rubix Cube's. We are interested in investigating the relationship betweeen the strategies and heuristics correlated to solving a Rubix cube successfully. The task of solving Rubix cube's is evidently a challenging one when considering the state space has a branching factor of about 18 moves per state in a 3 by 3, giving it a total of approximately 4.3 × 10^19 possible states and configuerations.
+The project's goal is to analyze Search Algorithms when applied to the state spaces of Cubes. We are interested in investigating the relationship between the strategies and heuristics correlated to solving a Rubix cube successfully. The task of solving Rubix cubes is evidently a challenging one when considering the state space has a branching factor of about 18 moves per state in a 3 by 3, giving it a total of approximately 4.3 × 10^19 possible states and configurations.
 
 ### 2. How to Install and Run
 
@@ -15,7 +15,7 @@ fix me
 ### 4. File Structure Overview
 
 ##### cube_exp.py
-This file contains configuration variables and code for running and storing Rubix state space environments information. Options of producing a CSV and a diagram are optional.
+This file contains configuration variables and code for running and storing Rubix state space environment information. Options of producing a CSV and a diagram are optional.
 
 #### Rubix Module
 This module is responsible for storing all Rubix abstract shape implementations
@@ -32,13 +32,13 @@ This module is responsible for storing all Searching methods that will explore t
 This file contains the implementation of A* which relies on the heuristic function within the Rubix classes.
 
 ##### searchStructures.py
-This file contains essential classes used through out the searching algorithms like nodes, queues and classes like the priorityQueue.
+This file contains essential classes used throughout the searching algorithms like nodes, queues, and classes like the priorityQueue.
 
 ### 5. Program Configuration
 Configuration parameters can be found within cube_exp.py
 
 ### 6. About Project
-This group project expands upon the concepts discussed in Artifical Intelligence Courses and applies them to the domain of Combinatorics.
+This group project expands upon the concepts discussed in Artificial Intelligence Courses and applies them to the domain of Combinatorics.
 
 #### Contributors to building this project:
 - Jeremy Perez
