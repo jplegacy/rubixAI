@@ -9,8 +9,8 @@ The project's goal is to apply search algorithms to the state spaces of Rubix cu
     pip install -r requirements.txt 
     python3 cube_exp.py
 
-#### Understanding Output
-fix me
+### 3. Understanding Output
+The program by default produces a CSV file storing all of the data and seeds correlated to each run within the experimentData directory
 
 ### 4. File Structure Overview
 
