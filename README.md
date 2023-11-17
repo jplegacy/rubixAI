@@ -1,6 +1,8 @@
 # Rubix AI
 ## Traversing Rubix Cube State Spaces with Informed Search Algorithms 
 
+- _Please refer to for more information about this project[here](<docs/writeup.md>)_
+
 ### 1. Background and Goals
 The project's goal is to apply search algorithms to the state spaces of Rubix cubes. We are interested in investigating the relationship between successful heuristics correlated to solving a Rubix cube efficiently and effectively. Considering the state space has a branching factor of about 18 moves per state in a 3 by 3, giving it a total of approximately 4.3 × 10^19 possible states and configurations, the task of solving Rubix cubes is evidently a challenging one.
 
