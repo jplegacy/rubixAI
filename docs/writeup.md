@@ -59,7 +59,7 @@ In retrospect, implementing a graph to represent a cube could've been better mad
 
 ### Analysis and Success of Heuristic Function
 
-![2x2CubeData](figures/AStar2x2heur1XTRA.png)
+![2x2CubeData](figures/AStar3x3heur1XTRA.png)
 
 
 ### Citations and Sources
